@@ -1,2 +1,2 @@
 #!/bin/bash
-ls $PATH | egrep -c '^-'
+find . -type d -path './*' -print | wc -l
