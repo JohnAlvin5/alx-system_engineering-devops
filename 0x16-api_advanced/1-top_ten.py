@@ -11,7 +11,7 @@ def top_ten(subreddit):
     if subreddit is None or not isinstance(subreddit, str):
         return 0
 
-    u_agent = {'User-Agent': 'xica369'}
+    u_agent = {'User-Agent': 'Mozilla Firefox Version 109.0'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'limit': 10}
     response = requests.get(url, headers=u_agent, allow_redirects=False,

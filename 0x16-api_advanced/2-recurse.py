@@ -16,7 +16,7 @@ def recurse(subreddit, hot_list=[]):
     if subreddit is None or not isinstance(subreddit, str):
         return 0
 
-    u_agent = {'User-Agent': 'xica369'}
+    u_agent = {'User-Agent': 'Mozilla Firefox Version 109.0'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'after': after}
     response = requests.get(url, headers=u_agent, allow_redirects=False,
