@@ -6,7 +6,7 @@ import requests
 import sys
 
 
-def count_words(subreddit, word_list, after = "", word_dic = {}):
+def count_words(subreddit, word_list, after="", word_dic={}):
     """ returns a list of titles of all hot articles for a given
         subreddit or return None otherwisse
     """
@@ -25,7 +25,8 @@ def count_words(subreddit, word_list, after = "", word_dic = {}):
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     u_agent = {'user-agent': 'esw1229/0.0.1'}
     parameters = {'limit': 100, 'after': after}
-    response = requests.get(url, headers=u_agent, params=parameters, allow_redirects=False)
+    response = requests.get(url, headers=u_agent, params=parameters,
+                            allow_redirects=False)
 
     if response.status_code != 200:
         return None
@@ -35,6 +36,7 @@ def count_words(subreddit, word_list, after = "", word_dic = {}):
         return None
 
     try:
+
         data = js.get("data")
         after = data.get("after")
         children = data.get("children")
@@ -42,11 +44,9 @@ def count_words(subreddit, word_list, after = "", word_dic = {}):
             post = child.get("data")
             title = post.get("title")
             lower = [s.lower() for s in title.split(' ')]
-
             for w in word_list:
                 word_dic[w] += lower.count(w.lower())
-
-    except:
+    except ValueError:
         return None
 
     count_words(subreddit, word_list, after, word_dic)
