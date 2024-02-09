@@ -9,7 +9,7 @@ import sys
 def top_ten(subreddit):
     """ returns the top ten post titles or None otherwise """
     if subreddit is None or not isinstance(subreddit, str):
-        return 0
+        print("None")
 
     u_agent = {'User-Agent': 'Mozilla Firefox Version 109.0'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
