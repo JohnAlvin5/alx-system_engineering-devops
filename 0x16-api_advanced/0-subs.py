@@ -9,6 +9,9 @@ import sys
 def number_of_subscribers(subreddit):
     """ returns number of subscribers to the subreddit, or 0 otherwise
     """
+    if subreddit is None or not isinstance(subreddit, str):
+        return 0
+
     u_agent = {'User-Agent': 'xica369'}
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     response = requests.get(url, headers=u_agent, allow_redirects=False)

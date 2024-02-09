@@ -8,6 +8,9 @@ import sys
 
 def top_ten(subreddit):
     """ returns the top ten post titles or None otherwise """
+    if subreddit is None or not isinstance(subreddit, str):
+        return 0
+
     u_agent = {'User-Agent': 'xica369'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'limit': 10}

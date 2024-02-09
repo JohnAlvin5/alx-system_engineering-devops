@@ -8,10 +8,14 @@ after = None
 
 
 def recurse(subreddit, hot_list=[]):
-    """ returns a list containing the titles of all hot articles for 
+    """ returns a list containing the titles of all hot articles for
     the subreddit or None otherwise
     """
     global after
+
+    if subreddit is None or not isinstance(subreddit, str):
+        return 0
+
     u_agent = {'User-Agent': 'xica369'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'after': after}
