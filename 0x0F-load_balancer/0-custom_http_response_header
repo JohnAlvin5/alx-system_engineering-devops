@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Configures web servers with nginx custom response headers
+
 apt-get -y update
 apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
