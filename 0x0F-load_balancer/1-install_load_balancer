@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Configure HAproxy to send traffic to web-01 and web-02 using roundrobin
+sudo apt-get -y update
+sudo apt-get install -y haproxy
+sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOT
+global
+    daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http_front
+    bind *:80
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server 244284-web-01 100.25.0.186:80 check
+    server 244284-web-02 52.206.217.175:80 check
+EOT
+
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+sudo systemctl start haproxy
+sudo systemctl enable haproxy
