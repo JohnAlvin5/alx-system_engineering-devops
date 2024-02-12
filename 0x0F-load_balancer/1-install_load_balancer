@@ -19,8 +19,8 @@ frontend http_front
 
 backend http_back
     balance roundrobin
-    server 244284-web-01 100.25.0.186:80 check
-    server 244284-web-02 52.206.217.175:80 check
+    server 268057-web-01 100.25.117.101:80 check
+    server 268057-web-02 54.160.106.191:80 check
 EOT
 
 sudo haproxy -c -f /etc/haproxy/haproxy.cfg
